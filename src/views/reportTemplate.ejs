@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr" data-fr-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport de Forêt : <%= query.forestName %></title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr/dist/dsfr.min.css">
+    <link rel="stylesheet" href="http://localhost:3000/css/report.css">
+    <link rel="stylesheet" href="https://unpkg.com/mcutils/dist/mcutils.css">
+</head>
+<body>
+    <!-- Header principal -->
+    <header class="fr-header" role="banner">
+        <div class="fr-header__body">
+            <div class="fr-container">
+                <div class="fr-header__navbar">
+                    <h1 class="fr-h1">Rapport pour la forêt : <%= query.forestName %></h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenu principal -->
+    <main role="main" class="fr-container fr-my-10w">
+        <!-- Section Carte -->
+        <%- include('./elements/map', { query: query }) %>
+
+        <!-- Section Synthèse -->
+        <%- include('./elements/synthese') %>
+
+        <!-- Sections détaillées -->
+        <% if (query.type && query.type.length > 0) { %>
+            <% query.type.forEach(function(type) { %>
+                <% if (type === 'rapport.agriculture') { %>
+                    <%- include('./elements/agriculture') %>
+                <% } else if (type === 'rapport.biodiversite') { %>
+                    <%- include('./elements/biodiversite') %>
+                <% } else if (type === 'rapport.eau') { %>
+                    <%- include('./elements/eau') %>
+                <% } %>
+            <% }); %>
+        <% }  %>
+
+    </main>
+
+    <!-- Pied de page -->
+    <footer class="fr-footer" role="contentinfo">
+        <div class="fr-container">
+            <div class="fr-footer__bottom">
+                <p class="fr-footer__bottom-title">Document généré pour le rapport de la forêt : <%= query.forestName %></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript DSFR -->
+    <script src="https://cdn.jsdelivr.net/npm/@gouvfr/dsfr/dist/dsfr.module.min.js" type="module"></script>
+</body>
+</html>

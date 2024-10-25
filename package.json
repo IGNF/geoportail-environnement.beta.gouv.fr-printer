@@ -1,0 +1,25 @@
+{
+  "name": "node-puppeteer-service",
+  "version": "1.0.0",
+  "description": "NodeJS microservice which allows to generate PDF file from a SQL database using Puppeteer.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^8.7.3",
+    "puppeteer": "^22.0.0",
+    "ejs":"^3.1.10",
+    "pdf-merger-js":"^5.1.2",
+    "body-parser":"^1.20.3"
+  },
+  "keywords": [
+    "pdf",
+    "html",
+    "generator",
+    "puppeteer",
+    "nodejs"
+  ],
+  "author": "..."
+}
